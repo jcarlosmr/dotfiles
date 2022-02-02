@@ -148,7 +148,7 @@ alias la='lsd -a --group-dirs=first'
 export GOPATH=$HOME/golib
 export PATH=$PATH:$GOPATH/bin
 export GOPATH=$GOPATH:$HOME/Projects/go
-export PATH="/home/jcarlosmr/.local/share/solana/install/active_release/bin:$PATH"
+export PATH$HOME/.local/share/solana/install/active_release/bin:$PATH
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export ZSH_PECO_HISTORY_DEDUP=1
 
