@@ -103,7 +103,7 @@ set autowriteall
 
 " Enable auto completion menu after pressing TAB.
 set wildmenu wildmode=full
- 
+
 " There are certain files that we would never want to edit with Vim.
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
@@ -120,6 +120,18 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
+
+" Delete trailing spaces
+" autocmd BufWritePre * :%s/\s\+$//e
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+" autocmd BufWritePre * :call TrimWhitespace()
+autocmd BufWritePre * call TrimWhitespace()
+
 
 let g:NERDTreeGitStatusWithFlags = 1
 let g:NERDTreeShowHidden = 1
@@ -209,8 +221,8 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-emmet',
   \ 'coc-css',
-  \ 'coc-prettier', 
-  \ 'coc-json', 
+  \ 'coc-prettier',
+  \ 'coc-json',
   \ 'coc-python',
   \ 'coc-sh',
   \ 'coc-go'
@@ -327,7 +339,7 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr 
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
