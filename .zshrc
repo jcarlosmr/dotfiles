@@ -15,7 +15,7 @@ unsetopt nomatch
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Dependecies verification
-REQS=(fzf atuin eza bat zoxide vim stow)
+REQS=(fzf tmux eza bat zoxide vim stow)
 
 check_dependencies() {
     local missing_pkgs=()
