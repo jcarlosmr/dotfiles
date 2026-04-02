@@ -14,6 +14,29 @@ unsetopt nomatch
 
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Dependecies verification
+REQS=(fzf atuin eza bat zoxide vim stow)
+
+check_dependencies() {
+    local missing_pkgs=()
+    
+    for pkg in "${REQS[@]}"; do
+        if ! command -v "$pkg" &> /dev/null; then
+            missing_pkgs+=("$pkg")
+        fi
+    done
+
+    if [ ${#missing_pkgs[@]} -gt 0 ]; then
+        echo "📦 Paquetes faltantes detectados: ${missing_pkgs[*]}"
+        echo "Solicitando privilegios para instalar vía DNF..."
+        sudo dnf install -y "${missing_pkgs[@]}"
+    fi
+}
+
+# Excecute dependecies verification
+check_dependencies
+
+
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
