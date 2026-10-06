@@ -15,7 +15,7 @@ unsetopt nomatch
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Dependecies verification
-REQS=(fzf tmux eza bat zoxide vim stow)
+REQS=(fzf atuin tmux eza bat zoxide vim stow)
 
 check_dependencies() {
     local missing_pkgs=()
@@ -148,11 +148,11 @@ eval "$(zoxide init --cmd cd zsh)"
 # Custom Configurations
 # ---------------------
 # fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi
+#FNM_PATH="$HOME/.local/share/fnm"
+#if [ -d "$FNM_PATH" ]; then
+#  export PATH="$FNM_PATH:$PATH"
+#  eval "`fnm env --use-on-cd`"
+#fi
 
 # --------------
 # Custom exports
@@ -205,3 +205,24 @@ alias -g TEE='| tee'
 
 # Redirect output with tee /dev/null
 alias -g TEEA='| tee -a'
+
+# opencode
+export PATH=/home/jcarlosmr/.opencode/bin:$PATH
+
+# pnpm
+export PNPM_HOME="/home/jcarlosmr/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/jcarlosmr/.local/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/jcarlosmr/Programs/google-cloud-sdk/path.zsh.inc' ]; then . '/home/jcarlosmr/Programs/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/jcarlosmr/Programs/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jcarlosmr/Programs/google-cloud-sdk/completion.zsh.inc'; fi
