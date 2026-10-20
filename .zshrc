@@ -175,8 +175,8 @@ export PATH=~/.console-ninja/.bin:$PATH
 # --------------
 # Custom aliases
 # --------------
-alias ls='eza --icons'
-alias ll='eza -al --icons'
+alias ls='eza --icons auto'
+alias ll='eza -al --icons auto'  
 alias cat='bat'
 alias pcat='bat -p'
 
